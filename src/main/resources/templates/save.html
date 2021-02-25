@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Nuevo Posteo</title>
+ 
+<!-- Bootstrap CSS -->
+<link href="../static/css/bootstrap.css" rel="stylesheet"
+ th:href="@{/css/bootstrap.css}">
+</head>
+<body>
+	<div class="container">
+		<br>
+		<h2>Agregar Posteo</h2>
+		<form action="#" th:action="@{/save}" th:object="${posteo}" method="post">
+			
+			<div class="form-group">
+				<label for="titulo">Titulo</label>
+				<input type="text" class="form-control" id="titulo" th:field="*{titulo}" name="titulo">
+			</div>
+				<input type="hidden" th:field="*{id}" name="id" id="id">
+			
+			<div class="form-group">
+				<label for="contenido">Contenido</label>
+				<input type="text" class="form-control" id="contenido" th:field="*{contenido}" name="contenido">
+			</div>
+			
+			<div class="form-group">
+				<label for="imagen">Imagen</label>
+				<input type="text" class="form-control" id="imagen" th:field="*{imagen}" name="imagen">
+			</div>
+			
+			
+			<br>
+			<button type="submit" class="btn btn-success">Guardar</button>
+			<a th:href="@{/}" class="btn btn-primary">Volver</a>
+		</form>
+	</div>
+</body>
+</html>

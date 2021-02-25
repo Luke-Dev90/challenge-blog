@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.challenge.alkemy.blog.model.Posteo;
@@ -32,7 +33,7 @@ public class PosteoController {
 		return "save";
 	}
 	
-	@GetMapping("/save")
+	@PostMapping("/save")
 	public String save(Posteo posteo, Model model) {
 		posteoService.save(posteo);
 		return "redirect:/";
