@@ -18,10 +18,6 @@
 			<thead>
 				<tr>
 					<th>Titulo</th>
-					<th>Contenido</th>
-					<th>Imagen</th>
-					<th>Categoria</th>
-					<th>Fecha</th>
 					<th>Editar</th>
 					<th>Eliminar</th>
 				</tr>
@@ -29,10 +25,6 @@
 			<tbody>
 				<tr th:each="posteo : ${list}">
 					<td th:text="${posteo.titulo}">
-					<td th:text="${posteo.contenido}">
-					<td th:text="${posteo.imagen}">
-					<td th:text="${posteo.categoria}">
-					<td th:date="${posteo.fecha}">
 					<td><a class="btn btn-info" th:href="@{/save/{id}(id=${posteo.id})}">Editar</a></td>
 					<td><a class="btn btn-danger" th:href="@{/delete/{id}(id=${posteo.id})}">Eliminar</a></td>
 				</tr>

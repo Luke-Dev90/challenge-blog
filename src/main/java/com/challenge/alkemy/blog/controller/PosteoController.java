@@ -17,7 +17,7 @@ public class PosteoController {
 	@Autowired
 	private PosteoService posteoService;
 	
-	@RequestMapping("/")
+	@RequestMapping("/home")
 	public String index(Model model) {
 		model.addAttribute("list", posteoService.getAll());
 		return "index";
@@ -36,12 +36,12 @@ public class PosteoController {
 	@PostMapping("/save")
 	public String save(Posteo posteo, Model model) {
 		posteoService.save(posteo);
-		return "redirect:/";
+		return "redirect:/home";
 	}
 	
 	@GetMapping("/delete/{id}")
 	public String delete(@PathVariable("id") Long id,Model model) {
 		posteoService.delete(id);
-		return "redirect:/";
+		return "redirect:/home";
 	}
 }
