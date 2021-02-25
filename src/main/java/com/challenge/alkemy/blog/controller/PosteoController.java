@@ -41,6 +41,6 @@ public class PosteoController {
 	@GetMapping("/delete/{id}")
 	public String delete(@PathVariable("id") Long id,Model model) {
 		posteoService.delete(id);
-		return "delete";
+		return "redirect:/";
 	}
 }
