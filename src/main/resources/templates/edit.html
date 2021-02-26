@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Nuevo Posteo</title>
+<title>Editar Posteo</title>
  
 <!-- Bootstrap CSS -->
 <link href="../static/css/bootstrap.css" rel="stylesheet"
@@ -14,7 +14,7 @@
   	<h2 class="mx-auto"style="color:white;"> Challenge Alkemy - Blog</h2>
 	</nav>
 		<br>
-		<h2>Nuevo Posteo</h2>
+		<h2>Editar Posteo</h2>
 		<form action="#" th:action="@{/save}" th:object="${posteo}" method="post">
 			
 			<div class="form-group p-1">
@@ -35,6 +35,11 @@
 				<option th:each="category : ${T(com.challenge.alkemy.blog.model.Posteo.Categoria).values()}"
 					th:value="${category}" th:text="${category.displayEnum}"></option>
 				</select>
+			</div>
+			
+			<div class="form-group">
+				<label for="fecha">Fecha</label>
+				<input type="text" class="form-control" id="fecha"  th:field="*{fecha}" name="fecha" readonly>
 			</div>
 			
 			<div class="form-group p-1">

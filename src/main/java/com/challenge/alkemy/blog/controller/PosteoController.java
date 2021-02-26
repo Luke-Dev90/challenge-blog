@@ -33,6 +33,16 @@ public class PosteoController {
 		return "save";
 	}
 	
+	@GetMapping("/edit/{id}")
+	public String edit(@PathVariable("id") Long id, Model model) {
+		if(id != null && id!=0) {
+			model.addAttribute("posteo", posteoService.get(id));
+		}else {
+			model.addAttribute("posteo", new Posteo());
+		}
+		return "edit";
+	}
+	
 	@PostMapping("/save")
 	public String save(Posteo posteo, Model model) {
 		posteoService.save(posteo);

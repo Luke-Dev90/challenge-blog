@@ -1,23 +1,27 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>Challenge Blog</title>
 <!-- Bootstrap CSS -->
 <link href="../static/css/bootstrap.css" rel="stylesheet"
  th:href="@{/css/bootstrap.css}">
 </head>
-<body>
-	<div class="container">
+<body style="background-color: RGB(237,244,255)">
+	<div class="container-fluid">
+	<nav class="navbar navbar-dark bg-primary ">
+  	<h2 class="mx-auto"style="color:white;"> Challenge Alkemy - Blog</h2>
+	</nav>
 	<br>
 	<h2 th:if="${list.isEmpty()}">No hay Posteos disponibles</h2>
 	<div  th:if="${!list.isEmpty()}">
-	<h2>Posteos disponibles</h2>
+	<h2 style="text-align:center;">Posteos disponibles</h2>
 	<br>
-		<table class="table">
+		<table class="table" style="border: 1px solid; border-color:darkgray;">
 			<thead>
 				<tr>
-					<th>Titulo</th>
+					<th>Título</th>
+					<th>Fecha</th>
 					<th>Editar</th>
 					<th>Eliminar</th>
 				</tr>
@@ -25,7 +29,8 @@
 			<tbody>
 				<tr th:each="posteo : ${list}">
 					<td th:text="${posteo.titulo}">
-					<td><a class="btn btn-info" th:href="@{/save/{id}(id=${posteo.id})}">Editar</a></td>
+					<td th:text="${posteo.fecha}">
+					<td><a class="btn btn-primary" th:href="@{/edit/{id}(id=${posteo.id})}">Editar</a></td>
 					<td><a class="btn btn-danger" th:href="@{/delete/{id}(id=${posteo.id})}">Eliminar</a></td>
 				</tr>
 			</tbody>
@@ -33,7 +38,7 @@
 	</div>
 	<br>
 	<div>
-		<a href="/save/0" class="btn btn-primary">Nuevo</a>
+		<a href="/save/0" class="btn btn-success">Nuevo</a>
 	</div>
 	</div>
 </body>

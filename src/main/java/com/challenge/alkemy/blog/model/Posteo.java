@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -28,10 +29,14 @@ public class Posteo {
 	@Column
 	private String categoria;
 	
-	@CreationTimestamp
+	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm:ss")
 	@Column
 	private LocalDateTime  fecha;
 	
+	@PrePersist
+	public void prePersist() {
+		fecha =LocalDateTime.now();
+	}
 	
 	public static enum Categoria {
 		NOTICIAS("Noticias"),
