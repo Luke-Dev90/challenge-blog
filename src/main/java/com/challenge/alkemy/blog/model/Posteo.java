@@ -1,16 +1,18 @@
 package com.challenge.alkemy.blog.model;
 
-import java.sql.Date;
+
 import java.time.LocalDateTime;
 
-import javax.persistence.Column;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.PrePersist;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
-import org.hibernate.annotations.CreationTimestamp;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -20,17 +22,17 @@ public class Posteo {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column
+	
+	@NotEmpty
 	private String titulo;
-	@Column
+	
 	private String contenido;
-	@Column
+	
 	private String imagen;
-	@Column
+	
 	private String categoria;
 	
 	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm:ss")
-	@Column
 	private LocalDateTime  fecha;
 	
 	@PrePersist
@@ -105,6 +107,11 @@ public class Posteo {
 		this.imagen = imagen;
 		this.categoria = categoria;
 		this.fecha = fecha;
+	}
+	@Override
+	public String toString() {
+		return "Posteo [id=" + id + ", titulo=" + titulo + ", contenido=" + contenido + ", imagen=" + imagen
+				+ ", categoria=" + categoria + ", fecha=" + fecha + "]";
 	}
 	
 	

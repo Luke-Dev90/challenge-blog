@@ -5,11 +5,12 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,7 +35,7 @@ public class PosteoController {
 	}
 	
 	@GetMapping("/save/{id}")
-	public String showSave(@PathVariable("id") Long id, Model model) {
+	public String showSave(@Valid @PathVariable("id") Long id, Model model) {
 		if(id != null && id!=0) {
 			model.addAttribute("posteo", posteoService.get(id));
 		}else {
@@ -44,7 +45,7 @@ public class PosteoController {
 	}
 	
 	@GetMapping("/edit/{id}")
-	public String edit(@PathVariable("id") Long id, Model model) {
+	public String edit(@Valid @PathVariable("id")  Long id, Model model) {
 		if(id != null && id!=0) {
 			model.addAttribute("posteo", posteoService.get(id));
 		}else {
@@ -54,7 +55,14 @@ public class PosteoController {
 	}
 	
 	@PostMapping("/save")
-	public String save(@RequestParam(name="file",required= false ) MultipartFile imagen, Posteo posteo, Model model, RedirectAttributes flash) throws IOException {
+	public String save( @RequestParam(name="file",required= false ) MultipartFile imagen, 
+			@Valid Posteo posteo, Model model, RedirectAttributes flash,
+			BindingResult result) throws IOException {
+		
+		if(result.hasErrors()) {
+			System.out.println("Error en formulario");
+			return "save";
+		}
 		
 		if(!imagen.isEmpty()) {
 			String ruta = "src/main/resources/static/uploads/";

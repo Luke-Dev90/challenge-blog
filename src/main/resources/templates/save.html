@@ -15,17 +15,20 @@
 	</nav>
 		<br>
 		<h2>Nuevo Posteo</h2>
-		<form action="#" th:action="@{/save}" th:object="${posteo}" method="post" enctype="multipart/form-data">
+		<form action="#" th:action="@{/save}" th:object="${posteo}" method="post" enctype="multipart/form-data" id="newPost">
 			
 			<div class="form-group p-1">
 				<label for="titulo">Titulo</label>
 				<input type="text" class="form-control" id="titulo" th:field="*{titulo}" name="titulo">
+				
 			</div>
+				<span class="text-danger" id="errorTitulo"></span>
 				<input type="hidden" th:field="*{id}" name="id" id="id">
 			
 			<div class="form-group p-1" >
 				<label for="contenido">Contenido</label>
 				<input type="text" class="form-control" id="contenido" th:field="*{contenido}" name="contenido">
+				<span class="text-danger" id="errorContenido"></span>
 			</div>
 			
 			<div class="form-group p-1">
@@ -39,7 +42,8 @@
 			
 			<div class="form-group p-1">
 				<label for="imagen">Imagen</label>
-				<input type="file" class="form-control"  name="file">
+				<input type="file" class="form-control" name="file" id="imagen">
+				<span class="text-danger" id="errorImagen"></span>
 			</div>
 			
 			<br>
@@ -47,5 +51,59 @@
 			<a th:href="@{/home}" class="btn btn-primary">Volver</a>
 		</form>
 	</div>
+	
+	
+	<!-- src="../js/formValid.js" -->
+		<script >
+		var formulario = document.getElementById('newPost');
+		var inputTitulo = document.getElementById("titulo");	
+		var inputContenido = document.getElementById('contenido');
+		var inputImagen = document.getElementById('imagen');
+	
+		var errorTitulo = document.getElementById('errorTitulo');
+		var errorContenido = document.getElementById('errorContenido');
+		var errorImagen = document.getElementById('errorImagen');
+		
+		formulario.addEventListener('submit', (e)=>{
+					
+			inputImagen.classList.remove('is-valid','is-invalid')
+			if(inputImagen.files.length == 0){
+				inputImagen.classList.add('is-invalid');
+				errorImagen.innerHTML = "Debe seleccionar una imagen.";
+				e.preventDefault();
+			}else{
+				inputImagen.classList.add('is-valid');
+				errorImagen.innerHTML = "";
+			}
+			
+			inputTitulo.classList.remove('is-valid','is-invalid')
+			
+			if(inputTitulo.value.length < 1 || inputTitulo.value.length >244 ){
+				 inputTitulo.classList.add('is-invalid')
+				 errorTitulo.innerHTML = "Debe contener un titulo, de 1 a 255 caracteres";
+				 e.preventDefault();
+			}else{
+				inputTitulo.classList.add('is-valid')
+				
+				errorTitulo.innerHTML = "";
+			}
+			
+			inputContenido.classList.remove('is-valid','is-invalid')
+			
+			if(inputContenido.value.length < 1 || inputContenido.value.length >244 ){
+				inputContenido.classList.add('is-invalid')
+				errorContenido.innerHTML = "Debe contener un contenido, de 1 a 255 caracteres";
+				e.preventDefault();
+			}else{
+				inputContenido.classList.add('is-valid')
+				errorContenido.innerHTML = "";
+			}
+			
+			
+		});
+		
+		
+		
+		</script>
 </body>
 </html>
