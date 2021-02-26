@@ -95,6 +95,17 @@ public class Posteo {
 	}
 	
 	
+	public Posteo() {}
+	
+	public Posteo(Long id, String titulo, String contenido, String imagen, String categoria, LocalDateTime fecha) {
+		super();
+		this.id = id;
+		this.titulo = titulo;
+		this.contenido = contenido;
+		this.imagen = imagen;
+		this.categoria = categoria;
+		this.fecha = fecha;
+	}
 	
 	
 }

@@ -15,7 +15,7 @@
 	</nav>
 		<br>
 		<h2>Nuevo Posteo</h2>
-		<form action="#" th:action="@{/save}" th:object="${posteo}" method="post">
+		<form action="#" th:action="@{/save}" th:object="${posteo}" method="post" enctype="multipart/form-data">
 			
 			<div class="form-group p-1">
 				<label for="titulo">Titulo</label>
@@ -39,7 +39,7 @@
 			
 			<div class="form-group p-1">
 				<label for="imagen">Imagen</label>
-				<input type="text" class="form-control" id="imagen" th:field="*{imagen}" name="imagen">
+				<input type="file" class="form-control"  name="file">
 			</div>
 			
 			<br>
